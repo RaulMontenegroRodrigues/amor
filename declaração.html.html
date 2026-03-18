@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Para Você ❤️</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      overflow: hidden;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 400px;
+      background: white;
+      padding: 20px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    h1 { color: #ff4d6d; }
+
+    input, button {
+      width: 80%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+
+    button {
+      background: #ff4d6d;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    .hidden { display: none; }
+
+    .heart {
+      position: absolute;
+      color: red;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-10vh); }
+      100% { transform: translateY(110vh); }
+    }
+
+    .photo {
+      width: 100%;
+      border-radius: 15px;
+      margin-top: 10px;
+    }
+
+    .letter {
+      margin-top: 15px;
+      padding: 10px;
+      background: #ffe6eb;
+      border-radius: 10px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container" id="login">
+  <h1>Qual o nome do nosso primeiro gatinho? 💌</h1>
+  <input type="password" id="senha" placeholder="Nossa senha" />
+  <button onclick="verificarSenha()">Entrar</button>
+  <p id="erro" style="color:red;"></p>
+</div>
+
+<div class="container hidden" id="conteudo">
+  <h1>Para você ❤️</h1>
+  <p id="contador"></p>
+
+  <img src="https://picsum.photos/300/200" class="photo" />
+
+  <button onclick="mostrarCarta(0)">Abrir carta 💌</button>
+  <div class="letter" id="carta0">Você é o melhor presente que Deus me deu 💖 eu te amo MUITO INFINITAMENTE💖</div>
+
+  <button onclick="mostrarCarta(1)">Outra carta 💕</button>
+  <div class="letter" id="carta1">Cada momento com você é especial PRA MINHA VIDA, me sinto preenchido cada vez que estou ao seu lado ✨</div>
+
+  <button onclick="mostrarCarta(2)">Mais uma 😳</button>
+  <div class="letter" id="carta2">Eu te amo mais do que palavras conseguem dizer ❤️</div>
+
+  <p>💞 Pra sempre nós 💞</p>
+</div>
+
+<audio id="musica" loop>
+  <source src="" type="audio/mpeg">
+</audio>
+
+<script>
+const senhaCorreta = "gatinho gordinho";
+const dataNamoro = new Date("2023-08-06"); // MUDE A DATA
+
+function verificarSenha() {
+  const senha = document.getElementById("senha").value;
+  if (senha === senhaCorreta) {
+    document.getElementById("login").classList.add("hidden");
+    document.getElementById("conteudo").classList.remove("hidden");
+    document.getElementById("musica").play();
+    iniciarCoracoes();
+    atualizarContador();
+  } else {
+    document.getElementById("erro").innerText = "Senha incorreta 😢";
+  }
+}
+
+function mostrarCarta(id) {
+  const carta = document.getElementById("carta" + id);
+  carta.style.display = carta.style.display === "block" ? "none" : "block";
+}
+
+function atualizarContador() {
+  const hoje = new Date();
+  const diff = hoje - dataNamoro;
+  const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+  document.getElementById("contador").innerText = `Estamos juntos há ${dias} dias ❤️`;
+}
+
+function iniciarCoracoes() {
+  setInterval(() => {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerText = "💖";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 5000);
+  }, 300);
+}
+</script>
+
+</body>
+</html>
