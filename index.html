@@ -1,148 +1,374 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Para Você ❤️</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Arial', sans-serif;
-      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-      overflow: hidden;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gaby ❤️</title>
 
-    .container {
-      width: 90%;
-      max-width: 400px;
-      background: white;
-      padding: 20px;
-      border-radius: 20px;
-      text-align: center;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap');
 
-    h1 { color: #ff4d6d; }
+body{
+  margin:0;
+  font-family:'Poppins',sans-serif;
+  background:linear-gradient(180deg,#0f0c29,#302b63,#24243e);
+  color:white;
+  overflow-x:hidden;
+}
 
-    input, button {
-      width: 80%;
-      padding: 10px;
-      margin: 10px 0;
-      border-radius: 10px;
-      border: 1px solid #ccc;
-      text-align: center;
-    }
+/* SEÇÕES */
+.section{
+  min-height:100vh;
+  padding:40px 20px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+}
 
-    button {
-      background: #ff4d6d;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
+/* TITULO */
+h1{
+  font-size:36px;
+  background:linear-gradient(45deg,#ff4d6d,#ff9a9e);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
 
-    .hidden { display: none; }
+/* CARD */
+.card{
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(15px);
+  padding:25px;
+  border-radius:20px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.5);
+  margin-top:20px;
+}
 
-    .heart {
-      position: absolute;
-      color: red;
-      animation: fall linear infinite;
-    }
+/* BOTÃO */
+.btn{
+  margin-top:20px;
+  padding:14px 25px;
+  border:none;
+  border-radius:30px;
+  background:linear-gradient(45deg,#ff4d6d,#ff758f);
+  color:white;
+  font-weight:bold;
+  box-shadow:0 0 20px rgba(255,77,109,0.6);
+}
 
-    @keyframes fall {
-      0% { transform: translateY(-10vh); }
-      100% { transform: translateY(110vh); }
-    }
+/* CONTADOR */
+.counter{
+  margin-top:10px;
+  font-size:18px;
+  color:#ff9a9e;
+}
 
-    .photo {
-      width: 100%;
-      border-radius: 15px;
-      margin-top: 10px;
-    }
+/* GALERIA */
+.gallery{
+  display:flex;
+  overflow-x:auto;
+  gap:15px;
+  width:100%;
+  padding:10px;
+}
+.gallery img{
+  width:75%;
+  border-radius:20px;
+  opacity:0.8;
+}
 
-    .letter {
-      margin-top: 15px;
-      padding: 10px;
-      background: #ffe6eb;
-      border-radius: 10px;
-      display: none;
-    }
-  </style>
+/* ROLETA */
+canvas{
+  margin:20px auto;
+  display:block;
+  filter:drop-shadow(0 0 20px rgba(255,77,109,0.5));
+  background:rgba(255,255,255,0.03);
+  border-radius:50%;
+  padding:10px;
+}
+
+/* PLAYER */
+.player{
+  position:fixed;
+  bottom:0;
+  width:100%;
+  background:rgba(0,0,0,0.6);
+  backdrop-filter:blur(15px);
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:10px;
+}
+.cover{
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  animation:spin 8s linear infinite;
+}
+@keyframes spin{
+  from{transform:rotate(0)}
+  to{transform:rotate(360deg)}
+}
+
+/* POPUP */
+.popup{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.8);
+}
+.popup-box{
+  background:rgba(255,255,255,0.08);
+  backdrop-filter:blur(15px);
+  padding:25px;
+  border-radius:20px;
+  margin:50% auto;
+  width:80%;
+  text-align:center;
+  box-shadow:0 0 30px #ff4d6d;
+}
+
+/* CORAÇÕES */
+.heart{
+  position:fixed;
+  animation:float 3s linear forwards;
+}
+@keyframes float{
+  from{transform:translateY(0);opacity:1}
+  to{transform:translateY(-150px);opacity:0}
+}
+
+
+.love-card{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:80vh;
+  padding:20px;
+  text-align:center;
+}
+
+.love-border{
+  max-width:650px;
+  padding:25px;
+  border-radius:20px;
+
+  /* BORDA ROMÂNTICA */
+  border:2px solid rgba(255,77,109,0.6);
+
+  /* efeito vidro */
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(15px);
+
+  /* glow bonito */
+  box-shadow:
+    0 0 20px rgba(255,77,109,0.2),
+    0 0 40px rgba(255,77,109,0.1);
+
+  transition:0.3s;
+}
+
+.love-border:hover{
+  transform:scale(1.02);
+  box-shadow:
+    0 0 25px rgba(255,77,109,0.4),
+    0 0 60px rgba(255,77,109,0.2);
+}
+
+.love-border p{
+  white-space:pre-line;
+  font-size:17px;
+  line-height:1.8;
+  color:white;
+}
+</style>
 </head>
+
 <body>
 
-<div class="container" id="login">
-  <h1>Qual o nome do nosso primeiro gatinho? 💌</h1>
-  <input type="password" id="senha" placeholder="Nossa senha" />
-  <button onclick="verificarSenha()">Entrar</button>
-  <p id="erro" style="color:red;"></p>
+<!-- HOME -->
+<section class="section">
+  <h1>Princesa ❤️</h1>
+  <p>Você é a melhor parte dos meus dias</p>
+  <div class="counter" id="counter"></div>
+
+  <div class="card">
+    <p>Esse site é só uma pequena forma de te mostrar o quanto você é importante pra mim 💖</p>
+  </div>
+</section>
+
+<!-- HISTÓRIA -->
+<section class="section">
+  <h2>Nossa História 💕</h2>
+
+  <div class="card">
+    <p>
+      Nossa história começou de um jeito tão bonito, e eu sinto que ela vai ficando ainda mais especial a cada dia que passa. Estar com você mudou muita coisa em mim, me trouxe uma felicidade e uma leveza que eu nem sabia que existia.
+
+Hoje, completar mil dias ao seu lado é um marco incrível na minha vida. Não é só um número… é a prova de tudo o que a gente viveu juntos, de cada momento, cada aprendizado, cada sorriso e até das dificuldades que só nos fizeram crescer.
+
+Eu me sinto muito sortudo por ter você comigo. De verdade. Você faz meus dias mais leves, minha vida mais bonita e meu coração mais tranquilo.
+
+E eu tô muito ansioso pra te ver… pra poder te encher de amor, carinho e matar essa saudade que só aumenta.
+❤️
+    </p>
+  </div>
+</section>
+<div class="love-card">
+  <div class="card love-border">
+    <p style="white-space:pre-line">
+Essa música é pra você.
+
+Eu gosto de você,  
+e gosto de ficar com você.
+
+Meu riso é tão mais feliz contigo…  
+porque o meu melhor amigo também é o meu amor.
+
+E a gente canta,  
+e a gente dança,  
+e a gente nunca se cansa  
+de ser criança.  
+
+A gente brinca  
+na nossa velha infância.
+
+Seus olhos são meu clarão,  
+me guiam dentro da escuridão.  
+
+Seus pés me abrem o caminho,  
+e eu sigo… sem nunca me sentir só.
+
+Você é assim,  
+um sonho pra mim.
+
+Eu quero te encher de beijos,  
+de cuidado, de carinho, de amor.
+
+Eu penso em você  
+desde o amanhecer  
+até quando eu me deito.
+ 
+eu uso essa musica pra dizer o quanto eu te amo. ❤️
+    </p>
+  </div>
 </div>
 
-<div class="container hidden" id="conteudo">
-  <h1>Para você ❤️</h1>
-  <p id="contador"></p>
 
-  <img src="https://picsum.photos/300/200" class="photo" />
+<!-- ROLETA -->
+<section class="section">
+  <h2>Gire e receba seu prêmio ❤️</h2>
 
-  <button onclick="mostrarCarta(0)">Abrir carta 💌</button>
-  <div class="letter" id="carta0">Você é o melhor presente que Deus me deu 💖 eu te amo MUITO INFINITAMENTE💖</div>
+  <canvas id="wheel" width="300" height="300"></canvas>
+  <button class="btn" onclick="spin()">Girar</button>
+</section>
 
-  <button onclick="mostrarCarta(1)">Outra carta 💕</button>
-  <div class="letter" id="carta1">Cada momento com você é especial PRA MINHA VIDA, me sinto preenchido cada vez que estou ao seu lado ✨</div>
-
-  <button onclick="mostrarCarta(2)">Mais uma 😳</button>
-  <div class="letter" id="carta2">Eu te amo mais do que palavras conseguem dizer ❤️</div>
-
-  <p>💞 Pra sempre nós 💞</p>
+<!-- POPUP -->
+<div class="popup" id="popup">
+  <div class="popup-box">
+    <h2 id="result"></h2>
+    <button class="btn" onclick="closePopup()">Fechar</button>
+  </div>
 </div>
 
-<audio id="musica" loop>
-  <source src="" type="audio/mpeg">
-</audio>
+<!-- PLAYER -->
+<div class="player">
+  <img src="https://picsum.photos/100" class="cover">
+  <div>
+    <div>Velha Infância ❤️</div>
+    <small>Toque para ouvir</small>
+  </div>
+</div>
+
+<audio id="audio" src="assets/velha.mp3"></audio>
 
 <script>
-const senhaCorreta = "gatinho gordinho";
-const dataNamoro = new Date("2023-08-06"); // MUDE A DATA
 
-function verificarSenha() {
-  const senha = document.getElementById("senha").value;
-  if (senha === senhaCorreta) {
-    document.getElementById("login").classList.add("hidden");
-    document.getElementById("conteudo").classList.remove("hidden");
-    document.getElementById("musica").play();
-    iniciarCoracoes();
-    atualizarContador();
-  } else {
-    document.getElementById("erro").innerText = "Senha incorreta 😢";
+/* CONTADOR */
+const start=new Date("2023-08-06");
+setInterval(()=>{
+  let d=Math.floor((new Date()-start)/86400000);
+  document.getElementById("counter").innerText=d+" dias juntos ❤️";
+},1000);
+
+/* CORAÇÕES */
+document.body.addEventListener("click",e=>{
+  let h=document.createElement("div");
+  h.innerHTML="❤️";
+  h.className="heart";
+  h.style.left=e.clientX+"px";
+  h.style.top=e.clientY+"px";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),3000);
+});
+
+/* PLAYER */
+const audio=document.getElementById("audio");
+document.body.onclick=()=>audio.play();
+
+/* ROLETA */
+const prizes=[
+  "Vale beijos 💋",
+  "Uma massagem 😏",
+  "Um cheiro 🤗",
+  "um dia realizando suas vontades ❤️"
+];
+
+const canvas=document.getElementById("wheel");
+const ctx=canvas.getContext("2d");
+
+function drawWheel(){
+  const arc=(2*Math.PI)/prizes.length;
+  const radius=140;
+
+  ctx.clearRect(0,0,300,300);
+  ctx.textAlign="center";
+  ctx.textBaseline="middle";
+
+  for(let i=0;i<prizes.length;i++){
+    let angle=i*arc;
+
+    ctx.beginPath();
+    ctx.fillStyle=i%2?"#ff4d6d":"#ff758f";
+    ctx.moveTo(150,150);
+    ctx.arc(150,150,radius,angle,angle+arc);
+    ctx.fill();
+
+    ctx.save();
+    ctx.translate(150,150);
+    ctx.rotate(angle+arc/2);
+
+    ctx.fillStyle="white";
+    ctx.font="12px Poppins";
+    ctx.fillText(prizes[i],radius-35,0);
+
+    ctx.restore();
   }
 }
 
-function mostrarCarta(id) {
-  const carta = document.getElementById("carta" + id);
-  carta.style.display = carta.style.display === "block" ? "none" : "block";
+drawWheel();
+
+function spin(){
+  let deg=Math.random()*360+1440;
+  canvas.style.transition="3s";
+  canvas.style.transform=`rotate(${deg}deg)`;
+
+  setTimeout(()=>{
+    let winner=prizes[Math.floor(Math.random()*prizes.length)];
+    showPopup(winner);
+  },3000);
 }
 
-function atualizarContador() {
-  const hoje = new Date();
-  const diff = hoje - dataNamoro;
-  const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
-  document.getElementById("contador").innerText = `Estamos juntos há ${dias} dias ❤️`;
+function showPopup(t){
+  document.getElementById("popup").style.display="block";
+  document.getElementById("result").innerText=t;
 }
 
-function iniciarCoracoes() {
-  setInterval(() => {
-    const heart = document.createElement("div");
-    heart.classList.add("heart");
-    heart.innerText = "💖";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
-    document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 5000);
-  }, 300);
+function closePopup(){
+  document.getElementById("popup").style.display="none";
 }
+
 </script>
 
 </body>
